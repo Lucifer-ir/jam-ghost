@@ -54,6 +54,14 @@ There is no central signaling service or message relay. Manual QR/text exchange 
 - QRCode.js — MIT (`web/assets/QRCode-MIT-LICENSE.txt`).
 - jsQR — Apache License 2.0 (`web/assets/jsQR-APACHE-LICENSE.txt`).
 
+## Bundled third-party assets
+
+- Vazirmatn font — SIL Open Font License 1.1.
+- QRCode.js — MIT License.
+- jsQR — Apache License 2.0.
+
+License texts are included in `web/assets/`.
+
 ## Security status
 
 Experimental software; no independent security audit has been performed. Do not use for high-risk, life-critical, or highly sensitive communication. Review the code and threat model before relying on it.
