@@ -1,81 +1,11 @@
 <!doctype html>
-<html lang="en" dir="ltr">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#080b12">
-  <meta name="description" content="JAM GHOST — private peer-to-peer messaging, built for your device.">
-  <title>JAM GHOST — Private by design</title>
-  <link rel="stylesheet" href="/style.css">
-  <script src="/app.js" defer></script>
-</head>
-<body>
-  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
-  <main class="shell">
-    <header class="topbar">
-      <a class="brand" href="#" aria-label="JAM GHOST home">
-        <span class="brand-mark"><span></span><span></span><span></span></span>
-        <span>JAM <b>GHOST</b><small>PRIVATE NETWORK</small></span>
-      </a>
-      <div class="top-status"><i></i> LOCAL INSTANCE <span>v0.1</span></div>
-    </header>
-
-    <section class="hero">
-      <div class="eyebrow"><span class="pulse"></span> YOUR DEVICE. YOUR CONNECTION.</div>
-      <h1>Privacy isn't a feature.<br><em>It's the architecture.</em></h1>
-      <p class="intro">A private messaging space designed to connect devices directly — without a central messaging account.</p>
-      <div class="hero-actions">
-        <button class="btn btn-primary" id="startPairing"><span>＋</span> Start a connection <b>↗</b></button>
-        <button class="btn btn-ghost" id="openSettings">Preferences <span>⚙</span></button>
-      </div>
-      <div class="notice"><span>i</span><p><b>Development preview</b> — v0.1 runs this interface locally. Peer-to-peer messaging and end-to-end identity verification are not active yet.</p></div>
-    </section>
-
-    <section class="workspace">
-      <div class="section-heading"><div><span class="kicker">CONNECTION</span><h2>Connect privately</h2></div><span class="tag">COMING IN v0.2</span></div>
-      <div class="connect-grid">
-        <article class="connect-card">
-          <div class="card-icon qr-icon">▦</div><div class="card-copy"><h3>Scan a QR code</h3><p>Pair two nearby devices by scanning a one-time connection code.</p></div>
-          <button class="text-action" data-action="qr">Explore QR pairing <span>→</span></button>
-        </article>
-        <article class="connect-card">
-          <div class="card-icon key-icon">⌘</div><div class="card-copy"><h3>Use an invite code</h3><p>Connect by exchanging a short invitation code when scanning isn't convenient.</p></div>
-          <button class="text-action" data-action="invite">Explore invite codes <span>→</span></button>
-        </article>
-      </div>
-    </section>
-
-    <section class="security-strip">
-      <div class="security-symbol">◇</div><div><b>Designed for direct communication</b><p>WebRTC DataChannels are planned for device-to-device transport. Connection availability depends on network and NAT conditions.</p></div>
-      <span class="lock-label">NO CENTRAL INBOX</span>
-    </section>
-
-    <section class="settings" id="settings">
-      <div class="section-heading"><div><span class="kicker">YOUR RULES</span><h2>Privacy preferences</h2></div><span class="tag tag-live">LOCAL SETTINGS</span></div>
-      <div class="setting-row">
-        <div><h3>Message history</h3><p>Choose whether conversations stay temporary or are saved on this device.</p></div>
-        <select id="historyMode" aria-label="Message history">
-          <option value="memory">Memory only</option>
-          <option value="encrypted">Encrypted local history</option>
-        </select>
-      </div>
-      <div class="setting-row">
-        <div><h3>Pairing methods</h3><p>QR pairing and text invite codes.</p></div><span class="setting-value">QR + INVITE CODE</span>
-      </div>
-      <div class="setting-row">
-        <div><h3>Device identity</h3><p>Persistent device identity plus temporary session identity.</p></div><span class="setting-value">BOTH MODES</span>
-      </div>
-      <p class="save-state" id="saveState">Preferences are stored locally in this browser.</p>
-    </section>
-
-    <footer><span>JAM GHOST <b>©</b> 2026</span><span>OPEN SOURCE · BUILT FOR PRIVACY</span></footer>
-  </main>
-
-  <dialog id="infoDialog">
-    <div class="dialog-top"><span class="kicker">JAM GHOST / ROADMAP</span><button class="close-dialog" id="closeDialog" aria-label="Close">×</button></div>
-    <h2 id="dialogTitle">Coming in the next release</h2>
-    <p id="dialogText">This capability is part of the upcoming peer-to-peer pairing milestone.</p>
-    <div class="dialog-foot"><span class="tag">PLANNED FEATURE</span><button class="btn btn-primary" id="dialogOk">Got it</button></div>
-  </dialog>
-</body>
-</html>
+<html lang="en" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#080b12"><meta name="description" content="JAM GHOST — direct peer-to-peer messaging."><title>JAM GHOST — Private by design</title><link rel="stylesheet" href="/style.css"><script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js" defer></script><script src="/app.js" defer></script></head>
+<body><div class="ambient ambient-a"></div><div class="ambient ambient-b"></div><main class="shell">
+<header class="topbar"><a class="brand" href="#"><span class="brand-mark"><span></span><span></span><span></span></span><span>JAM <b>GHOST</b><small>PRIVATE NETWORK</small></span></a><div class="top-actions"><span class="top-status"><i></i><span data-i18n="local">LOCAL INSTANCE</span> <span>v0.2</span></span><button class="lang-btn" id="languageToggle">فارسی</button></div></header>
+<section class="hero"><div class="eyebrow"><span class="pulse"></span><span data-i18n="eyebrow">YOUR DEVICE. YOUR CONNECTION.</span></div><h1 data-i18n-html="headline">Privacy isn't a feature.<br><em>It's the architecture.</em></h1><p class="intro" data-i18n="intro">A private messaging space that connects devices directly — no central messaging account or message server.</p><div class="hero-actions"><button class="btn btn-primary" id="createPair"><span>＋</span><span data-i18n="create">Create connection</span><b>↗</b></button><button class="btn btn-ghost" id="joinPair" data-i18n="join">Join with invite</button></div><div class="notice" id="statusNotice"><span>i</span><p data-i18n-html="notice"><b>Direct P2P preview</b> — messages travel over a WebRTC DataChannel. Verify the matching safety code with the other person before chatting.</p></div></section>
+<section class="workspace"><div class="section-heading"><div><span class="kicker" data-i18n="connection">CONNECTION</span><h2 data-i18n="connectTitle">Connect privately</h2></div><span class="tag tag-live" id="connectionState" data-i18n="notConnected">NOT CONNECTED</span></div><div class="connect-grid"><article class="connect-card"><div class="card-icon qr-icon">▦</div><div class="card-copy"><h3 data-i18n="qrTitle">Create a QR invitation</h3><p data-i18n="qrDesc">Start a new session and show your one-time QR code to the other device.</p></div><button class="text-action" id="createQr" data-i18n="createQr">Create invitation →</button></article><article class="connect-card"><div class="card-icon key-icon">⌘</div><div class="card-copy"><h3 data-i18n="joinTitle">Join an invitation</h3><p data-i18n="joinDesc">Scan the other device's QR code or paste its invitation text.</p></div><button class="text-action" id="joinQr" data-i18n="scanPaste">Scan / paste invitation →</button></article></div></section>
+<section class="verify-panel hidden" id="verifyPanel"><div class="section-heading"><div><span class="kicker" data-i18n="identity">IDENTITY CHECK</span><h2 data-i18n="verifyTitle">Verify your connection</h2></div><span class="tag" data-i18n="required">REQUIRED</span></div><p class="muted" data-i18n="verifyDesc">Compare this safety code with the other person using a separate trusted channel or in person. Both devices must show the same code.</p><div class="safety-code" id="safetyCode">----</div><button class="btn btn-primary" id="verifyButton" data-i18n="verified">I checked — codes match</button><p class="tiny muted" data-i18n="verifyWarning">Do not approve if the codes differ. The code is derived from both WebRTC DTLS fingerprints.</p></section>
+<section class="chat-panel hidden" id="chatPanel"><div class="section-heading"><div><span class="kicker" data-i18n="secureChat">PEER SESSION</span><h2 data-i18n="chatTitle">Private conversation</h2></div><button class="btn btn-danger" id="disconnect" data-i18n="disconnect">Disconnect</button></div><div class="chat-meta"><span class="online-dot"></span><span data-i18n="directActive">Direct connection active</span><span class="tag">DTLS</span></div><div class="messages" id="messages" aria-live="polite"><p class="empty-chat" data-i18n="emptyChat">Your verified conversation starts here.</p></div><form class="composer" id="messageForm"><input id="messageInput" autocomplete="off" maxlength="4000" data-i18n-placeholder="messagePlaceholder" placeholder="Write a message…" disabled><button class="btn btn-primary" id="sendButton" type="submit" disabled data-i18n="send">Send</button></form></section>
+<section class="settings"><div class="section-heading"><div><span class="kicker" data-i18n="yourRules">YOUR RULES</span><h2 data-i18n="preferences">Preferences</h2></div><span class="tag tag-live" data-i18n="localSettings">LOCAL SETTINGS</span></div><div class="setting-row"><div><h3 data-i18n="history">Message history</h3><p data-i18n="historyDesc">Messages stay in memory and are not saved in this version.</p></div><select id="historyMode"><option value="memory" data-i18n="memoryOnly">Memory only</option><option value="encrypted" data-i18n="localOnly">Local browser storage (not encrypted)</option></select></div><div class="setting-row"><div><h3 data-i18n="network">Network mode</h3><p data-i18n="networkDesc">Public STUN helps discover direct routes and may observe your public IP and connection metadata. No TURN relay is configured.</p></div><span class="setting-value" data-i18n="directStun">DIRECT + STUN</span></div><p class="save-state" id="saveState" data-i18n="savedLocally">Preferences are stored in this browser only.</p></section>
+<footer><span>JAM GHOST <b>©</b> 2026</span><span data-i18n="footer">OPEN SOURCE · DIRECT P2P · NO MESSAGE RELAY</span></footer></main>
+<dialog id="pairDialog"><div class="dialog-top"><span class="kicker" data-i18n="pairing">JAM GHOST / PAIRING</span><button class="close-dialog" id="closeDialog" aria-label="Close">×</button></div><h2 id="dialogTitle">Pair devices</h2><p class="dialog-desc" id="dialogDesc"></p><div id="qrWrap" class="qr-wrap hidden"><canvas id="qrCanvas"></canvas><p class="tiny muted" data-i18n="qrTip">Scan this code or copy the invitation text.</p></div><div id="scanWrap" class="scan-wrap hidden"><video id="camera" playsinline muted></video><button class="btn btn-ghost" id="stopCamera" data-i18n="stopCamera">Stop camera</button></div><textarea id="inviteText" class="invite-text hidden" rows="5" spellcheck="false" data-i18n-placeholder="invitePlaceholder" placeholder="Paste invitation text here…"></textarea><div class="dialog-actions"><button class="btn btn-ghost hidden" id="copyInvite" data-i18n="copyInvite">Copy invitation</button><button class="btn btn-primary hidden" id="processInvite" data-i18n="continue">Continue</button><button class="btn btn-ghost" id="dialogDone" data-i18n="close">Close</button></div><p class="error-text" id="pairError" role="alert"></p></dialog></body></html>
