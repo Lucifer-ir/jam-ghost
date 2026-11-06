@@ -16,7 +16,7 @@ cp -R "$SCRIPT_DIR/core" "$APP_DIR/"
 cp -R "$SCRIPT_DIR/web" "$APP_DIR/"
 cp "$SCRIPT_DIR/README.md" "$APP_DIR/"
 if [ -f "$APP_DIR/web/assets/Vazirmatn.woff2.b64" ]; then
-  base64 -d "$APP_DIR/web/assets/Vazirmatn.woff2.b64" > "$APP_DIR/web/assets/Vazirmatn.woff2"
+  python -c 'import base64,pathlib,sys; p=pathlib.Path(sys.argv[1]); p.with_suffix(".woff2").write_bytes(base64.b64decode(p.read_bytes()))' "$APP_DIR/web/assets/Vazirmatn.woff2.b64"
   chmod 644 "$APP_DIR/web/assets/Vazirmatn.woff2"
 else
   echo "[!] Persian font asset is missing."
