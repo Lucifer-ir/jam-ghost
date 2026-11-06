@@ -2,18 +2,18 @@
 
 **Private by design. Peer-to-peer by architecture.**
 
-JAM GHOST is an experimental, open-source private messaging project. The first release establishes a local Android/Termux launcher and browser interface.
+JAM GHOST is an experimental peer-to-peer chat for Android/Termux. The Python process only serves the local web interface. Chat messages travel directly between browsers over a WebRTC DataChannel.
 
-> **Version 0.1 is not a working messenger yet.** It does not connect peers, send messages, generate pairing QR codes, or provide end-to-end encrypted chat. Those are planned milestones.
+## v0.2 features
 
-## v0.1 features
-
-- Termux installer and `jam-ghost` command
-- Local-only web interface at `http://127.0.0.1:8765`
-- Mobile-responsive interface
-- Local browser preference for message-history mode
-- QR and invite-code flows shown as roadmap previews
-- Python standard library only; no third-party Python packages
+- English and Persian interface with RTL layout.
+- Manual WebRTC offer/answer exchange using QR codes or copied invitation text.
+- QR scanning through the device camera.
+- Direct text messaging over a WebRTC DataChannel.
+- DTLS transport encryption supplied by WebRTC.
+- Short safety code derived from both peers' DTLS SHA-256 fingerprints. Compare it out-of-band before enabling chat.
+- Local UI server bound only to 127.0.0.1.
+- Messages are memory-only; they are not persisted in this release.
 
 ## Install on Android / Termux
 
@@ -26,78 +26,38 @@ bash install.sh
 jam-ghost
 ```
 
-Optional: install **Termux:API** to let the launcher open the browser automatically. If it is unavailable, open the printed URL manually.
+Open the printed URL if the browser does not launch. Use a current Android browser and allow camera access for QR scanning. QR generation/scanning helpers are loaded from jsDelivr; internet access is needed for those libraries. Text invitation copy/paste is an alternative.
 
-Stop the local interface with `Ctrl+C`.
+## Pairing
+
+1. Device A selects **Create connection** and displays an offer QR/text.
+2. Device B selects **Join with invite**, scans or pastes the offer, and displays an answer QR/text.
+3. Device A scans or pastes the answer.
+4. After WebRTC connects, both devices display the same safety code.
+5. Compare the codes over a separate trusted channel or in person. If they match, both users can approve and chat.
+
+There is no central signaling service or message relay. Manual QR/text exchange is the signaling mechanism.
+
+## Network and privacy limitations
+
+- A public STUN service (stun.l.google.com:19302) helps discover direct routes. The STUN provider may observe public IP addresses and connection metadata.
+- No TURN relay is configured. Carrier NAT/CGNAT, firewalls, or restrictive networks may prevent a direct connection. This release will fail rather than silently relay messages.
+- QR scanning requires camera permission and a secure context. Android browsers generally treat localhost as secure.
+- QR helper libraries are loaded from jsDelivr. Offline use requires audited local copies and a corresponding Content Security Policy update.
+- WebRTC encrypts transport with DTLS. The short safety code is a basic out-of-band fingerprint comparison, not an audited identity/key-management system.
+- The Python process serves static files only. It does not receive or forward chat messages.
+- Chat content exists in browser memory and disappears when the page is closed or refreshed. The history selector is informational only in this version.
+
+## Security status
+
+Experimental software; no independent security audit has been performed. Do not use for high-risk, life-critical, or highly sensitive communication. Review the code and threat model before relying on it.
 
 ## Uninstall
-
-From the cloned repository:
 
 ```bash
 bash uninstall.sh
 ```
 
-This removes the installed application and launcher. It does not remove the cloned source repository.
-
-## Technical architecture
-
-### v0.1 — Local shell
-
-- Termux runs a Python `ThreadingHTTPServer`.
-- The server binds only to `127.0.0.1`; it is not exposed to the LAN or public internet.
-- The browser loads static HTML/CSS/JS.
-- No account, remote API, VPS, database, or message relay is used.
-
-### Planned milestones
-
-**v0.2 — Pairing**
-- WebRTC offer/answer exchange through QR.
-- Text invitation fallback.
-- Wait for ICE gathering to complete before encoding the SDP.
-- Add payload compression and multi-part QR handling if required.
-
-**v0.3 — Peer transport and identity**
-- WebRTC DataChannel for direct transport.
-- DTLS transport encryption.
-- Device identity keypair plus ephemeral session keypair.
-- Show a short authentication string / key fingerprint and require out-of-band verification.
-- Add an explicit connection state and clear disconnect action.
-
-**v0.4 — Message history**
-- User choice: memory-only or encrypted local history.
-- Do not persist plaintext messages.
-- Use Web Crypto APIs and a reviewed key-derivation/encryption design before claiming encrypted-at-rest storage.
-
-**v1.0 — Security review and release**
-- Threat model, independent review, tests across Android devices and carrier/Wi-Fi networks.
-- Document network metadata and limitations.
-
-## Important networking limitations
-
-Manual QR exchange removes the need for a central signaling server, but it does not guarantee a direct connection across every network. STUN can help peers discover NAT mappings; it does not carry chat messages. Some restrictive NAT/CGNAT combinations require TURN relay, which needs a server and should be an explicit opt-in. A strict direct-only mode may fail to connect on some networks.
-
-WebRTC's DTLS protects the data channel in transit, but encryption alone does not prove who the peer is. Users must verify the peer identity fingerprint / short authentication string to reduce man-in-the-middle risk.
-
-## Security status
-
-Do not use v0.1 for sensitive communication. The current release is a local UI shell only. No cryptographic security claim is made.
-
-## Project structure
-
-```text
-jam-ghost/
-├── install.sh
-├── uninstall.sh
-├── core/
-│   └── server.py
-├── web/
-│   ├── index.html
-│   ├── style.css
-│   └── app.js
-└── README.md
-```
-
 ## License
 
-MIT — see `LICENSE`.
+MIT — see [LICENSE](LICENSE).
