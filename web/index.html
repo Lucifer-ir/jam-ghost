@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#080b12">
+  <meta name="description" content="JAM GHOST — private peer-to-peer messaging, built for your device.">
+  <title>JAM GHOST — Private by design</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="JAM GHOST home">
+        <span class="brand-mark"><span></span><span></span><span></span></span>
+        <span>JAM <b>GHOST</b><small>PRIVATE NETWORK</small></span>
+      </a>
+      <div class="top-status"><i></i> LOCAL INSTANCE <span>v0.1</span></div>
+    </header>
+
+    <section class="hero">
+      <div class="eyebrow"><span class="pulse"></span> YOUR DEVICE. YOUR CONNECTION.</div>
+      <h1>Privacy isn't a feature.<br><em>It's the architecture.</em></h1>
+      <p class="intro">A private messaging space designed to connect devices directly — without a central messaging account.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" id="startPairing"><span>＋</span> Start a connection <b>↗</b></button>
+        <button class="btn btn-ghost" id="openSettings">Preferences <span>⚙</span></button>
+      </div>
+      <div class="notice"><span>i</span><p><b>Development preview</b> — v0.1 runs this interface locally. Peer-to-peer messaging and end-to-end identity verification are not active yet.</p></div>
+    </section>
+
+    <section class="workspace">
+      <div class="section-heading"><div><span class="kicker">CONNECTION</span><h2>Connect privately</h2></div><span class="tag">COMING IN v0.2</span></div>
+      <div class="connect-grid">
+        <article class="connect-card">
+          <div class="card-icon qr-icon">▦</div><div class="card-copy"><h3>Scan a QR code</h3><p>Pair two nearby devices by scanning a one-time connection code.</p></div>
+          <button class="text-action" data-action="qr">Explore QR pairing <span>→</span></button>
+        </article>
+        <article class="connect-card">
+          <div class="card-icon key-icon">⌘</div><div class="card-copy"><h3>Use an invite code</h3><p>Connect by exchanging a short invitation code when scanning isn't convenient.</p></div>
+          <button class="text-action" data-action="invite">Explore invite codes <span>→</span></button>
+        </article>
+      </div>
+    </section>
+
+    <section class="security-strip">
+      <div class="security-symbol">◇</div><div><b>Designed for direct communication</b><p>WebRTC DataChannels are planned for device-to-device transport. Connection availability depends on network and NAT conditions.</p></div>
+      <span class="lock-label">NO CENTRAL INBOX</span>
+    </section>
+
+    <section class="settings" id="settings">
+      <div class="section-heading"><div><span class="kicker">YOUR RULES</span><h2>Privacy preferences</h2></div><span class="tag tag-live">LOCAL SETTINGS</span></div>
+      <div class="setting-row">
+        <div><h3>Message history</h3><p>Choose whether conversations stay temporary or are saved on this device.</p></div>
+        <select id="historyMode" aria-label="Message history">
+          <option value="memory">Memory only</option>
+          <option value="encrypted">Encrypted local history</option>
+        </select>
+      </div>
+      <div class="setting-row">
+        <div><h3>Pairing methods</h3><p>QR pairing and text invite codes.</p></div><span class="setting-value">QR + INVITE CODE</span>
+      </div>
+      <div class="setting-row">
+        <div><h3>Device identity</h3><p>Persistent device identity plus temporary session identity.</p></div><span class="setting-value">BOTH MODES</span>
+      </div>
+      <p class="save-state" id="saveState">Preferences are stored locally in this browser.</p>
+    </section>
+
+    <footer><span>JAM GHOST <b>©</b> 2026</span><span>OPEN SOURCE · BUILT FOR PRIVACY</span></footer>
+  </main>
+
+  <dialog id="infoDialog">
+    <div class="dialog-top"><span class="kicker">JAM GHOST / ROADMAP</span><button class="close-dialog" id="closeDialog" aria-label="Close">×</button></div>
+    <h2 id="dialogTitle">Coming in the next release</h2>
+    <p id="dialogText">This capability is part of the upcoming peer-to-peer pairing milestone.</p>
+    <div class="dialog-foot"><span class="tag">PLANNED FEATURE</span><button class="btn btn-primary" id="dialogOk">Got it</button></div>
+  </dialog>
+</body>
+</html>
