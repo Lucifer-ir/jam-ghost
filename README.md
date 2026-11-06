@@ -26,7 +26,7 @@ bash install.sh
 jam-ghost
 ```
 
-Open the printed URL if the browser does not launch. Use a current Android browser and allow camera access for QR scanning. QR generation/scanning helpers are loaded from jsDelivr; internet access is needed for those libraries. Text invitation copy/paste is an alternative.
+Open the printed URL if the browser does not launch. Use a current Android browser and allow camera access for QR scanning. QR generation, QR scanning, and the Vazirmatn Persian font are bundled locally and do not need a CDN or internet connection after installation. Internet is still needed for WebRTC connectivity and STUN.
 
 ## Pairing
 
