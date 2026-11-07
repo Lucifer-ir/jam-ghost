@@ -135,7 +135,10 @@ class GhostHandler(SimpleHTTPRequestHandler):
                     else:
                         self._json(200, {"state": "waiting"})
                     return
-        self.send_error(404)
+        if path.startswith("/api/"):
+            self.send_error(404)
+            return
+        super().do_GET()
 
     def do_POST(self):
         path = urlsplit(self.path).path.rstrip("/") or "/"
