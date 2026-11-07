@@ -94,7 +94,7 @@ class GhostHandler(SimpleHTTPRequestHandler):
         return True
 
     def do_GET(self):
-        path = urlsplit(self.path).path.rstrip("/")
+        path = urlsplit(self.path).path.rstrip("/") or "/"
         parts = path.split("/")
         if len(parts) >= 4 and parts[1] == "api" and parts[2] == "rooms":
             room_id = parts[3]
@@ -138,7 +138,7 @@ class GhostHandler(SimpleHTTPRequestHandler):
         self.send_error(404)
 
     def do_POST(self):
-        path = urlsplit(self.path).path.rstrip("/")
+        path = urlsplit(self.path).path.rstrip("/") or "/"
         parts = path.split("/")
         try:
             body = self._body()
